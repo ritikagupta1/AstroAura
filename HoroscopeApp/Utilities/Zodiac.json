@@ -1,0 +1,72 @@
+//
+//  Zodiac.json
+//  HoroscopeApp
+//
+//  Created by Ritika Gupta on 03/10/24.
+//
+
+import Foundation
+{
+   "zodiacs":[
+      {
+         "startDate":"03/21",
+         "endDate":"04/19",
+         "zodiacSign":"Aries"
+      },
+      {
+         "startDate":"04/20",
+         "endDate":"05/20",
+         "zodiacSign":"Taurus"
+      },
+      {
+         "startDate":"05/21",
+         "endDate":"06/21",
+         "zodiacSign":"Gemini"
+      },
+      {
+         "startDate":"06/22",
+         "endDate":"07/22",
+         "zodiacSign":"Cancer"
+      },
+      {
+         "startDate":"07/23",
+         "endDate":"08/22",
+         "zodiacSign":"Leo"
+      },
+      {
+         "startDate":"08/23",
+         "endDate":"09/22",
+         "zodiacSign":"Virgo"
+      },
+      {
+         "startDate":"09/23",
+         "endDate":"10/23",
+         "zodiacSign":"Libra"
+      },
+      {
+         "startDate":"10/24",
+         "endDate":"11/21",
+         "zodiacSign":"Scorpio"
+      },
+      {
+         "startDate":"11/22",
+         "endDate":"12/21",
+         "zodiacSign":"Sagittarius"
+      },
+      {
+         "startDate":"12/22",
+         "endDate":"01/19",
+         "zodiacSign":"Capricorn"
+      },
+      {
+         "startDate":"01/20",
+         "endDate":"02/18",
+         "zodiacSign":"Aquarius"
+      },
+      {
+         "startDate":"02/19",
+         "endDate":"03/20",
+         "zodiacSign":"Pisces"
+      }
+   ]
+}

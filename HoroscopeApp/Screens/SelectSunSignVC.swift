@@ -86,6 +86,7 @@ class SelectSunSignVC: UIViewController {
         datePicker.date = .now
         datePicker.maximumDate = .now
         datePicker.backgroundColor = .systemBackground
+        datePicker.addTarget(self, action: #selector(handleDateSelection), for: .valueChanged)
         
         
         
@@ -112,7 +113,8 @@ class SelectSunSignVC: UIViewController {
             
             datePicker.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             datePicker.heightAnchor.constraint(equalToConstant: 40),
-            datePicker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30)
+            datePicker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30),
+            datePicker.widthAnchor.constraint(equalToConstant: 112)
         ])
         
         collectionViewHeightConstraint = collectionView.heightAnchor.constraint(equalToConstant: 0)
@@ -158,6 +160,11 @@ class SelectSunSignVC: UIViewController {
         
         return layout
     }
+    
+    @objc func handleDateSelection() {
+        presentedViewController?.dismiss(animated: true, completion: nil)
+        print(datePicker.date)
+    }
 }
 
 extension SelectSunSignVC: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -172,5 +179,9 @@ extension SelectSunSignVC: UICollectionViewDataSource, UICollectionViewDelegate 
         let sunsign = sunSigns[indexPath.row]
         cell.setUp(image: sunsign.image , title: sunsign.name)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(sunSigns[indexPath.row].name)
     }
 }
