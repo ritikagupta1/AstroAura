@@ -12,6 +12,8 @@
 		B4110AA02CA34E0500A402B4 /* SelectSunSignVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4110A9F2CA34E0500A402B4 /* SelectSunSignVC.swift */; };
 		B4110AA52CA34E0600A402B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4110AA42CA34E0600A402B4 /* Assets.xcassets */; };
 		B4110AB32CA3549500A402B4 /* SunSignCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4110AB22CA3549500A402B4 /* SunSignCell.swift */; };
+		B4110AB82CA69EA700A402B4 /* SunSign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4110AB72CA69EA700A402B4 /* SunSign.swift */; };
+		B466EC672CADC439001C8642 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466EC662CADC439001C8642 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		B4110AA42CA34E0600A402B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4110AA92CA34E0600A402B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4110AB22CA3549500A402B4 /* SunSignCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunSignCell.swift; sourceTree = "<group>"; };
+		B4110AB72CA69EA700A402B4 /* SunSign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunSign.swift; sourceTree = "<group>"; };
+		B466EC662CADC439001C8642 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,12 +58,14 @@
 		B4110A9A2CA34E0500A402B4 /* HoroscopeApp */ = {
 			isa = PBXGroup;
 			children = (
+				B4110AB62CA69E9200A402B4 /* Model */,
+				B4110AB42CA696C400A402B4 /* CustomViews */,
 				B4110AAF2CA353C400A402B4 /* Screens */,
+				B466EC652CADC413001C8642 /* Utilities */,
 				B4110A9B2CA34E0500A402B4 /* AppDelegate.swift */,
 				B4110A9D2CA34E0500A402B4 /* SceneDelegate.swift */,
 				B4110AA42CA34E0600A402B4 /* Assets.xcassets */,
 				B4110AA92CA34E0600A402B4 /* Info.plist */,
-				B4110AB22CA3549500A402B4 /* SunSignCell.swift */,
 			);
 			path = HoroscopeApp;
 			sourceTree = "<group>";
@@ -70,6 +76,38 @@
 				B4110A9F2CA34E0500A402B4 /* SelectSunSignVC.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		B4110AB42CA696C400A402B4 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				B4110AB52CA696CB00A402B4 /* Cells */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		B4110AB52CA696CB00A402B4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B4110AB22CA3549500A402B4 /* SunSignCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		B4110AB62CA69E9200A402B4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B4110AB72CA69EA700A402B4 /* SunSign.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B466EC652CADC413001C8642 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				B466EC662CADC439001C8642 /* Constants.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,8 +181,10 @@
 			files = (
 				B4110AB32CA3549500A402B4 /* SunSignCell.swift in Sources */,
 				B4110AA02CA34E0500A402B4 /* SelectSunSignVC.swift in Sources */,
+				B4110AB82CA69EA700A402B4 /* SunSign.swift in Sources */,
 				B4110A9C2CA34E0500A402B4 /* AppDelegate.swift in Sources */,
 				B4110A9E2CA34E0500A402B4 /* SceneDelegate.swift in Sources */,
+				B466EC672CADC439001C8642 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

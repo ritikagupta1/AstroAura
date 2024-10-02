@@ -8,7 +8,7 @@
 import UIKit
 
 class SunSignCell: UICollectionViewCell {
-    static let reuseIdentifier = "sunSignCell"
+    static let reuseIdentifier = Constants.sunSignCellIdentifier
     
     var imageView = UIImageView()
     var titleLabel = UILabel()
@@ -16,22 +16,22 @@ class SunSignCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
-        setUpCell(imageName: "AppIcon", title: "Aries")
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func configure() {
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.font = UIFont(name: Font.gothicMedium, size: 20)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        
-        imageView.layer.cornerRadius = 20
+       
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 50
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.borderWidth = 1.0
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         
         self.contentView.addSubview(imageView)
         self.contentView.addSubview(titleLabel)
@@ -40,7 +40,7 @@ class SunSignCell: UICollectionViewCell {
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
-            imageView.heightAnchor.constraint(equalTo: widthAnchor),
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
             
             titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 12),
             titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
@@ -48,15 +48,8 @@ class SunSignCell: UICollectionViewCell {
         ])
     }
     
-    func setUpCell(imageName: String, title: String) {
-        imageView.image = UIImage(named: imageName)
+    func setUp(image: UIImage, title: String) {
+        imageView.image = image
         titleLabel.text = title
     }
-    
-    
-}
-
-
-#Preview {
-    SunSignCell()
 }
