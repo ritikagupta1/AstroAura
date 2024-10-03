@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>top-level-items</key>
+	<array>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>118</string>
+					<key>EndingLineNumber</key>
+					<string>56</string>
+					<key>StartingColumnNumber</key>
+					<string>118</string>
+					<key>StartingLineNumber</key>
+					<string>56</string>
+					<key>Timestamp</key>
+					<string>749646698.4726779</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>HoroscopeApp/Screens/SelectSunSignVC.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string></string>
+				<key>leading</key>
+				<string>                    
+                default:
+                    // .unableToRetrieveZodiacData error will happen when decoding from user default fails, show alert</string>
+				<key>trailing</key>
+				<string>
+                    print(error)
+                }
+</string>
+			</dict>
+			<key>title</key>
+			<string>add alert for retrieve failure</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>31</string>
+					<key>EndingLineNumber</key>
+					<string>84</string>
+					<key>StartingColumnNumber</key>
+					<string>31</string>
+					<key>StartingLineNumber</key>
+					<string>84</string>
+					<key>Timestamp</key>
+					<string>749646760.135528</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>HoroscopeApp/Screens/SelectSunSignVC.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string></string>
+				<key>leading</key>
+				<string>            print("zodiac data couldn't be saved to user default because of \(error)")
+        } else {
+            print("zodiac data </string>
+				<key>trailing</key>
+				<string>added successfully to user default")
+        }
+    }
+</string>
+			</dict>
+			<key>title</key>
+			<string>add alert : couldn't save data to userdefaults</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+	</array>
+</dict>
+</plist>

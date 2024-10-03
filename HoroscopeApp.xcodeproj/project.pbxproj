@@ -16,6 +16,8 @@
 		B466EC672CADC439001C8642 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466EC662CADC439001C8642 /* Constants.swift */; };
 		B466EC692CADC99F001C8642 /* Zodiac.json in Resources */ = {isa = PBXBuildFile; fileRef = B466EC682CADC99F001C8642 /* Zodiac.json */; };
 		B466EC6B2CADD3D1001C8642 /* ZodiacSign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466EC6A2CADD3D1001C8642 /* ZodiacSign.swift */; };
+		B466EC6E2CADD922001C8642 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466EC6D2CADD922001C8642 /* Date+Ext.swift */; };
+		B466EC712CAE76AB001C8642 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466EC702CAE76AB001C8642 /* PersistenceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		B466EC662CADC439001C8642 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B466EC682CADC99F001C8642 /* Zodiac.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Zodiac.json; sourceTree = "<group>"; };
 		B466EC6A2CADD3D1001C8642 /* ZodiacSign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZodiacSign.swift; sourceTree = "<group>"; };
+		B466EC6D2CADD922001C8642 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		B466EC702CAE76AB001C8642 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 		B4110A9A2CA34E0500A402B4 /* HoroscopeApp */ = {
 			isa = PBXGroup;
 			children = (
+				B466EC6F2CAE7698001C8642 /* Managers */,
+				B466EC6C2CADD906001C8642 /* Extensions */,
 				B4110AB62CA69E9200A402B4 /* Model */,
 				B4110AB42CA696C400A402B4 /* CustomViews */,
 				B4110AAF2CA353C400A402B4 /* Screens */,
@@ -114,6 +120,22 @@
 				B466EC682CADC99F001C8642 /* Zodiac.json */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		B466EC6C2CADD906001C8642 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B466EC6D2CADD922001C8642 /* Date+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B466EC6F2CAE7698001C8642 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				B466EC702CAE76AB001C8642 /* PersistenceManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,8 +211,10 @@
 				B4110AB32CA3549500A402B4 /* SunSignCell.swift in Sources */,
 				B4110AA02CA34E0500A402B4 /* SelectSunSignVC.swift in Sources */,
 				B4110AB82CA69EA700A402B4 /* SunSign.swift in Sources */,
+				B466EC6E2CADD922001C8642 /* Date+Ext.swift in Sources */,
 				B4110A9C2CA34E0500A402B4 /* AppDelegate.swift in Sources */,
 				B4110A9E2CA34E0500A402B4 /* SceneDelegate.swift in Sources */,
+				B466EC712CAE76AB001C8642 /* PersistenceManager.swift in Sources */,
 				B466EC6B2CADD3D1001C8642 /* ZodiacSign.swift in Sources */,
 				B466EC672CADC439001C8642 /* Constants.swift in Sources */,
 			);

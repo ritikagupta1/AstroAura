@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct ZodiacSign {
-    struct Zodiac {
+struct ZodiacSign: Codable {
+    struct Zodiac: Codable {
         let startDate: Date
         let endDate: Date
-        let zodiacSign: String
+        let zodiacSign: Sign
     }
     
     let zodiacs: [Zodiac]

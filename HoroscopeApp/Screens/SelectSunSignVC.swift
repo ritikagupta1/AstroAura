@@ -16,7 +16,8 @@ class SelectSunSignVC: UIViewController {
     var collectionView: UICollectionView!
     let datePicker = UIDatePicker()
     
-    var counter = 0
+    var zodiacSignMapping: [ZodiacSign.Zodiac]?
+    
     var collectionViewHeightConstraint: NSLayoutConstraint!
     
     //MARK: Lifecycle methods
@@ -25,6 +26,7 @@ class SelectSunSignVC: UIViewController {
         super.viewDidLoad()
         self.configureCollectionView()
         self.layoutUI()
+        self.loadZodiacSignData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -35,6 +37,53 @@ class SelectSunSignVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.updateCollectionViewHeight()
+    }
+    
+    private func loadZodiacSignData() {
+        //check if zodiac data is already present in the user defaults
+        PersistenceManager.retrieveZodiacData { result in
+            switch result {
+            case .success(let zodiacData):
+                //If successful, store it in the local variable
+                self.zodiacSignMapping = zodiacData
+                
+            case .failure(let error):
+                switch error {
+                case .noZodiacDataFound:
+                    // For the very first time, data wont be there in user defaults,we will need to decode from json file and store it in user defaults
+                    self.decodeAndSaveZodiacData()
+                    
+                default:
+                    // .unableToRetrieveZodiacData error will happen when decoding from user default fails, show alert
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    private func decodeAndSaveZodiacData() {
+        guard let fileURL = Bundle.main.url(forResource: "Zodiac", withExtension: "json") else {
+            return
+        }
+        
+        guard let data = try? Data(contentsOf: fileURL) else {
+            return
+        }
+        let decoder = JSONDecoder()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd"
+        dateFormatter.locale = .current
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
+        guard let zodiacData = try? decoder.decode(ZodiacSign.self, from: data) else {
+            return
+        }
+        
+        self.zodiacSignMapping = zodiacData.zodiacs
+        if let error = PersistenceManager.addZodiacData(zodiacs: zodiacData.zodiacs) {
+            print("zodiac data couldn't be saved to user default because of \(error)")
+        } else {
+            print("zodiac data added successfully to user default")
+        }
     }
     
     private func layoutUI() {
@@ -114,7 +163,7 @@ class SelectSunSignVC: UIViewController {
             datePicker.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             datePicker.heightAnchor.constraint(equalToConstant: 40),
             datePicker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30),
-            datePicker.widthAnchor.constraint(equalToConstant: 112)
+            datePicker.widthAnchor.constraint(equalToConstant: 111)
         ])
         
         collectionViewHeightConstraint = collectionView.heightAnchor.constraint(equalToConstant: 0)
@@ -163,7 +212,43 @@ class SelectSunSignVC: UIViewController {
     
     @objc func handleDateSelection() {
         presentedViewController?.dismiss(animated: true, completion: nil)
-        print(datePicker.date)
+        let sign = getZodiacSign(date: datePicker.date)
+    }
+    
+    func getZodiacSign(date: Date) -> Sign? {
+        var sign: Sign?
+        
+        guard let zodiacSignMapping = zodiacSignMapping else {
+            print("Zodiac data not found")
+            return nil
+        }
+        
+        let calendar = Calendar.current
+        let dateComponent = calendar.dateComponents([.month,.day], from: date)
+       
+        
+        for zodiacSignMap in zodiacSignMapping {
+            let startDateComponent = calendar.dateComponents([.month,.day], from: zodiacSignMap.startDate)
+            let endDateComponent = calendar.dateComponents([.month, .day], from: zodiacSignMap.endDate)
+            
+            if startDateComponent.month! <= endDateComponent.month! {
+                // normal range such as march 12 - april 21
+                // last condition if
+                if (dateComponent.month! ==  startDateComponent.month! && dateComponent.day! >= startDateComponent.day!) || (dateComponent.month! == endDateComponent.month! && dateComponent.day! <= endDateComponent.day!) || (dateComponent.month! > startDateComponent.month! && dateComponent.month! < endDateComponent.month!) {
+                    sign = zodiacSignMap.zodiacSign
+                    break
+                }
+            } else {
+                // round year
+                if (dateComponent.month! == startDateComponent.month! && dateComponent.day! >= startDateComponent.day!) ||  (dateComponent.month! == endDateComponent.month! && dateComponent.day! <= endDateComponent.day!) || (dateComponent.month! < startDateComponent.month! && dateComponent.month! < endDateComponent.month!) {
+                    sign = zodiacSignMap.zodiacSign
+                    break
+                }
+            }
+            
+        }
+        
+        return sign
     }
 }
 
@@ -182,6 +267,6 @@ extension SelectSunSignVC: UICollectionViewDataSource, UICollectionViewDelegate 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(sunSigns[indexPath.row].name)
+        print(sunSigns[indexPath.row].sign)
     }
 }
