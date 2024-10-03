@@ -18,6 +18,10 @@
 		B466EC6B2CADD3D1001C8642 /* ZodiacSign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466EC6A2CADD3D1001C8642 /* ZodiacSign.swift */; };
 		B466EC6E2CADD922001C8642 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466EC6D2CADD922001C8642 /* Date+Ext.swift */; };
 		B466EC712CAE76AB001C8642 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466EC702CAE76AB001C8642 /* PersistenceManager.swift */; };
+		B466EC732CAEB4B0001C8642 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466EC722CAEB4B0001C8642 /* AlertView.swift */; };
+		B466EC772CAEB5E9001C8642 /* TitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466EC762CAEB5E9001C8642 /* TitleLabel.swift */; };
+		B466EC7D2CAF08E4001C8642 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466EC7C2CAF08E4001C8642 /* AlertViewController.swift */; };
+		B466EC7F2CAF09E4001C8642 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466EC7E2CAF09E4001C8642 /* UIViewController+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		B466EC6A2CADD3D1001C8642 /* ZodiacSign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZodiacSign.swift; sourceTree = "<group>"; };
 		B466EC6D2CADD922001C8642 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		B466EC702CAE76AB001C8642 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		B466EC722CAEB4B0001C8642 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		B466EC762CAEB5E9001C8642 /* TitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabel.swift; sourceTree = "<group>"; };
+		B466EC7C2CAF08E4001C8642 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		B466EC7E2CAF09E4001C8642 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +99,9 @@
 		B4110AB42CA696C400A402B4 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				B466EC7B2CAF08C9001C8642 /* ViewControllers */,
+				B466EC752CAEB5CF001C8642 /* Label */,
+				B466EC742CAEB4B7001C8642 /* Alerts */,
 				B4110AB52CA696CB00A402B4 /* Cells */,
 			);
 			path = CustomViews;
@@ -126,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				B466EC6D2CADD922001C8642 /* Date+Ext.swift */,
+				B466EC7E2CAF09E4001C8642 /* UIViewController+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -136,6 +148,30 @@
 				B466EC702CAE76AB001C8642 /* PersistenceManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		B466EC742CAEB4B7001C8642 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				B466EC722CAEB4B0001C8642 /* AlertView.swift */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
+		B466EC752CAEB5CF001C8642 /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				B466EC762CAEB5E9001C8642 /* TitleLabel.swift */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
+		B466EC7B2CAF08C9001C8642 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B466EC7C2CAF08E4001C8642 /* AlertViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,10 +245,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4110AB32CA3549500A402B4 /* SunSignCell.swift in Sources */,
+				B466EC7F2CAF09E4001C8642 /* UIViewController+Ext.swift in Sources */,
 				B4110AA02CA34E0500A402B4 /* SelectSunSignVC.swift in Sources */,
 				B4110AB82CA69EA700A402B4 /* SunSign.swift in Sources */,
 				B466EC6E2CADD922001C8642 /* Date+Ext.swift in Sources */,
+				B466EC772CAEB5E9001C8642 /* TitleLabel.swift in Sources */,
 				B4110A9C2CA34E0500A402B4 /* AppDelegate.swift in Sources */,
+				B466EC732CAEB4B0001C8642 /* AlertView.swift in Sources */,
+				B466EC7D2CAF08E4001C8642 /* AlertViewController.swift in Sources */,
 				B4110A9E2CA34E0500A402B4 /* SceneDelegate.swift in Sources */,
 				B466EC712CAE76AB001C8642 /* PersistenceManager.swift in Sources */,
 				B466EC6B2CADD3D1001C8642 /* ZodiacSign.swift in Sources */,

@@ -21,4 +21,8 @@ enum Constants {
            Not Sure??
         Select your date of birth
         """
+    
+    static let continueText = "Continue"
+    
+    static let zodiacSignMessageFormat = "Your zodiac sign is %@, Continue to know more about %@"
 }

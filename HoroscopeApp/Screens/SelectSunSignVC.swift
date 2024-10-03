@@ -11,12 +11,13 @@ class SelectSunSignVC: UIViewController {
     let scrollView =  UIScrollView()
     let contentView = UIView()
     
-    let titleLabel = UILabel()
-    let selectDOBLabel = UILabel()
+    let titleLabel = TitleLabel(font: UIFont(name: Font.typeWriterBold, size: 26), numberOfLines: 2)
+    let selectDOBLabel = TitleLabel(font: UIFont(name: Font.typeWriterBold, size: 22), alignment: .center, numberOfLines: 2)
     var collectionView: UICollectionView!
     let datePicker = UIDatePicker()
     
     var zodiacSignMapping: [ZodiacSign.Zodiac]?
+    var selectedSign: Sign?
     
     var collectionViewHeightConstraint: NSLayoutConstraint!
     
@@ -80,8 +81,10 @@ class SelectSunSignVC: UIViewController {
         
         self.zodiacSignMapping = zodiacData.zodiacs
         if let error = PersistenceManager.addZodiacData(zodiacs: zodiacData.zodiacs) {
+            // when saving in to user defaults fail, fail silently
             print("zodiac data couldn't be saved to user default because of \(error)")
         } else {
+            // when saving in to user defaults succeeds, succeed silently
             print("zodiac data added successfully to user default")
         }
     }
@@ -113,20 +116,9 @@ class SelectSunSignVC: UIViewController {
 //            contentView.widthAnchor.constraint(equalToConstant: 1000)
         ])
         
-        titleLabel.font = UIFont(name: Font.typeWriterBold, size: 26)
-        titleLabel.textColor = .label
         titleLabel.text = Constants.selectSignMessage
         
-        titleLabel.numberOfLines = 2
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        selectDOBLabel.font = UIFont(name: Font.typeWriterBold, size: 22)
-        selectDOBLabel.textColor = .label
         selectDOBLabel.text = Constants.selectBirthDateMessage
-
-        selectDOBLabel.numberOfLines = 2
-        selectDOBLabel.textAlignment = .center
-        selectDOBLabel.translatesAutoresizingMaskIntoConstraints = false
         
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .compact
@@ -212,7 +204,21 @@ class SelectSunSignVC: UIViewController {
     
     @objc func handleDateSelection() {
         presentedViewController?.dismiss(animated: true, completion: nil)
-        let sign = getZodiacSign(date: datePicker.date)
+        guard let sign = getZodiacSign(date: datePicker.date) else {
+            return
+        }
+        self.selectedSign = sign
+        self.presentAlertViewController(
+            title: sign.rawValue,
+            message: String(format: Constants.zodiacSignMessageFormat, sign.rawValue, sign.rawValue),
+            buttonTitle: Constants.continueText, buttonAction: continueClicked)
+    }
+    
+    func continueClicked() {
+        guard let selectedSign = selectedSign else {
+            return
+        }
+        print(selectedSign)
     }
     
     func getZodiacSign(date: Date) -> Sign? {
@@ -267,6 +273,7 @@ extension SelectSunSignVC: UICollectionViewDataSource, UICollectionViewDelegate 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(sunSigns[indexPath.row].sign)
+        self.selectedSign = sunSigns[indexPath.row].sign
+        continueClicked()
     }
 }
