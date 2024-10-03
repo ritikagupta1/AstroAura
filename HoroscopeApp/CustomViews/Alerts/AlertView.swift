@@ -41,7 +41,7 @@ class AlertView: UIView {
         self.button.titleLabel?.font = UIFont(name: Font.typeWriterBold, size: 20)
         self.button.setTitleColor(.white, for: .normal)
         self.button.setTitle(buttonTitle, for: .normal)
-        self.button.backgroundColor = .systemPurple
+        self.button.backgroundColor = .button
         self.button.translatesAutoresizingMaskIntoConstraints = false
         self.button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
         self.buttonAction = buttonAction
