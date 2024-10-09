@@ -3,54 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>top-level-items</key>
-	<array>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>0</string>
-					<key>EndingLineNumber</key>
-					<string>236</string>
-					<key>StartingColumnNumber</key>
-					<string>0</string>
-					<key>StartingLineNumber</key>
-					<string>235</string>
-					<key>Timestamp</key>
-					<string>749671265.668937</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>HoroscopeApp/Screens/SelectSunSignVC.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string>        for zodiacSignMap in zodiacSignMapping {
-</string>
-				<key>leading</key>
-				<string>       
-        
-</string>
-				<key>trailing</key>
-				<string>            let startDateComponent = calendar.dateComponents([.month,.day], from: zodiacSignMap.startDate)
-            let endDateComponent = calendar.dateComponents([.month, .day], from: zodiacSignMap.endDate)
-            
-</string>
-			</dict>
-			<key>title</key>
-			<string>check logic again with Bikash</string>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-	</array>
+	<array/>
 </dict>
 </plist>

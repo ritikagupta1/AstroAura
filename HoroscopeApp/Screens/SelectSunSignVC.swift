@@ -35,6 +35,11 @@ class SelectSunSignVC: UIViewController {
         self.updateCollectionViewHeight()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.updateCollectionViewHeight()
@@ -218,7 +223,8 @@ class SelectSunSignVC: UIViewController {
         guard let selectedSign = selectedSign else {
             return
         }
-        print(selectedSign)
+        
+        self.navigationController?.pushViewController(HoroscopeDetailsVC(sign: selectedSign), animated: true)
     }
     
     func getZodiacSign(date: Date) -> Sign? {

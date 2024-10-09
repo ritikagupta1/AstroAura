@@ -16,11 +16,13 @@ class TitleLabel: UILabel {
     convenience init(
         font: UIFont?,
         alignment: NSTextAlignment = .left,
-        numberOfLines: Int = 1) {
+        numberOfLines: Int = 1,
+        textcolor: UIColor = .label) {
         self.init(frame: .zero)
         self.textAlignment = alignment
         self.font = font ?? UIFont.systemFont(ofSize: 18)
         self.numberOfLines = numberOfLines
+        self.textColor = textcolor
     }
     
     required init?(coder: NSCoder) {
@@ -28,7 +30,6 @@ class TitleLabel: UILabel {
     }
     
     private func configure() {
-        self.textColor = .label
         self.translatesAutoresizingMaskIntoConstraints = false
         self.lineBreakMode = .byTruncatingTail
         self.adjustsFontSizeToFitWidth = true

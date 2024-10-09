@@ -8,8 +8,7 @@
 import UIKit
 
 class AlertView: UIView {
-    
-    let alertTitleLabel = TitleLabel(font: UIFont(name: Font.typeWriterBold, size: 32), alignment: .center, numberOfLines: 1)
+    let alertTitleLabel = TitleLabel(font: UIFont(name: Font.typeWriterBold, size: 24), alignment: .center, numberOfLines: 1)
     let alertMessageLabel = TitleLabel(font: UIFont(name: Font.gothicMedium, size: 16), alignment: .center, numberOfLines: 2)
     let button: UIButton = UIButton()
     var buttonAction: (() -> Void)?
@@ -48,21 +47,18 @@ class AlertView: UIView {
         
         
         self.addSubview(button)
-        let padding: CGFloat = 20
+        let padding: CGFloat = 10
         
         NSLayoutConstraint.activate([
-            alertTitleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
+            alertTitleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
             alertTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             alertTitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            alertTitleLabel.heightAnchor.constraint(equalToConstant: 24),
+            alertTitleLabel.heightAnchor.constraint(equalToConstant: 26),
             
-            
-            
-            button.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -padding),
-            button.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            button.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
+            button.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             button.heightAnchor.constraint(equalToConstant: 44),
-            
             
             alertMessageLabel.topAnchor.constraint(equalTo: alertTitleLabel.bottomAnchor, constant: padding),
             alertMessageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),

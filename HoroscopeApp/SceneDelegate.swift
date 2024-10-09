@@ -8,16 +8,22 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: scene.coordinateSpace.bounds)
         window?.windowScene = scene
         window?.makeKeyAndVisible()
-        window?.rootViewController = SelectSunSignVC()
+        let selectSunSignVC = SelectSunSignVC()
+        selectSunSignVC.title = "Select Sign"
+        window?.rootViewController = UINavigationController(rootViewController: selectSunSignVC)
+        configureNavigationBar()
+    }
+    
+    func configureNavigationBar() {
+        UITabBar.appearance().tintColor = .button
+        UINavigationBar.appearance().tintColor = .button
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -47,7 +53,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
 

@@ -39,7 +39,7 @@ class AlertViewController: UIViewController {
         NSLayoutConstraint.activate([
             alertView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             alertView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            alertView.widthAnchor.constraint(equalToConstant: 280),
+            alertView.widthAnchor.constraint(equalToConstant: 300),
             alertView.heightAnchor.constraint(equalToConstant: 220)
         ])
     }
