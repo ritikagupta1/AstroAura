@@ -118,7 +118,7 @@ class TraitsVC: ScrollableVC {
             
             luckyColorLabel.topAnchor.constraint(equalTo: luckyNumberLabel.bottomAnchor, constant: 12),
             luckyColorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            luckyColorLabel.widthAnchor.constraint(equalToConstant: 160),
+            luckyColorLabel.widthAnchor.constraint(equalToConstant: 180),
             luckyColorLabel.heightAnchor.constraint(equalToConstant: 28),
             
             luckyColorValue.centerYAnchor.constraint(equalTo: luckyColorLabel.centerYAnchor),
