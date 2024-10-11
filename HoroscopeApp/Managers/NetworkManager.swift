@@ -53,7 +53,7 @@ class NetworkManager {
                 let decoder = JSONDecoder()
                 let traits = try decoder.decode(Traits.self, from: data)
                 completion(.success(traits))
-                self.traitManager.setInToFileCache(for: "\(sign.rawValue)", traits: traits)
+                self.traitManager.setInToFileCache(for: "\(sign.rawValue)", value: traits)
             }catch {
                 completion(.failure(.invalidData))
                 return
