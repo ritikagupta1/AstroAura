@@ -13,13 +13,15 @@ class NetworkManager {
     static let shared = NetworkManager()
     
     let baseURL = "https://wd9j1sbsj0.execute-api.us-east-1.amazonaws.com/"
-    
+    let traitManager = CacheManagerProvider.shared(for: Traits.self)
+
+    // Use the manager as before
     
     func getTraits(sign: Sign, completion: @escaping(Result<Traits,HoroscopeError>)-> Void) {
         
         // first check if the file already exists
         
-        if let traits: Traits = ZodiacTraitCacheManager.shared.getFromFileCache(for: "\(sign.rawValue)") {
+        if let traits: Traits = traitManager.getFromFileCache(for: "\(sign.rawValue)") {
             completion(.success(traits))
             return
         }
@@ -51,7 +53,7 @@ class NetworkManager {
                 let decoder = JSONDecoder()
                 let traits = try decoder.decode(Traits.self, from: data)
                 completion(.success(traits))
-                ZodiacTraitCacheManager.shared.setInToFileCache(for: "\(sign.rawValue)", traits: traits)
+                self.traitManager.setInToFileCache(for: "\(sign.rawValue)", traits: traits)
             }catch {
                 completion(.failure(.invalidData))
                 return
