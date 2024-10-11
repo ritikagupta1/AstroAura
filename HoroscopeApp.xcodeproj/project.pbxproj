@@ -31,6 +31,7 @@
 		B466ECAE2CB6A21D001C8642 /* Traits.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECAD2CB6A21D001C8642 /* Traits.swift */; };
 		B466ECB02CB6A7AD001C8642 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECAF2CB6A7AD001C8642 /* NetworkManager.swift */; };
 		B466ECB22CB6A82E001C8642 /* HoroscopeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECB12CB6A82E001C8642 /* HoroscopeError.swift */; };
+		B466ECB42CB7CDB1001C8642 /* ZodiacTraitCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECB32CB7CDB1001C8642 /* ZodiacTraitCacheManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		B466ECAD2CB6A21D001C8642 /* Traits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Traits.swift; sourceTree = "<group>"; };
 		B466ECAF2CB6A7AD001C8642 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B466ECB12CB6A82E001C8642 /* HoroscopeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeError.swift; sourceTree = "<group>"; };
+		B466ECB32CB7CDB1001C8642 /* ZodiacTraitCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZodiacTraitCacheManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			children = (
 				B466EC702CAE76AB001C8642 /* PersistenceManager.swift */,
 				B466ECAF2CB6A7AD001C8642 /* NetworkManager.swift */,
+				B466ECB32CB7CDB1001C8642 /* ZodiacTraitCacheManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				B4110A9C2CA34E0500A402B4 /* AppDelegate.swift in Sources */,
 				B466ECB22CB6A82E001C8642 /* HoroscopeError.swift in Sources */,
 				B466ECA52CB31161001C8642 /* TraitsVC.swift in Sources */,
+				B466ECB42CB7CDB1001C8642 /* ZodiacTraitCacheManager.swift in Sources */,
 				B466EC732CAEB4B0001C8642 /* AlertView.swift in Sources */,
 				B466EC7D2CAF08E4001C8642 /* AlertViewController.swift in Sources */,
 				B4110A9E2CA34E0500A402B4 /* SceneDelegate.swift in Sources */,

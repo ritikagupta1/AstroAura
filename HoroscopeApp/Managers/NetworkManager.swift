@@ -14,7 +14,16 @@ class NetworkManager {
     
     let baseURL = "https://wd9j1sbsj0.execute-api.us-east-1.amazonaws.com/"
     
+    
     func getTraits(sign: Sign, completion: @escaping(Result<Traits,HoroscopeError>)-> Void) {
+        
+        // first check if the file already exists
+        
+        if let traits: Traits = ZodiacTraitCacheManager.shared.getFromFileCache(for: "\(sign.rawValue)") {
+            completion(.success(traits))
+            return
+        }
+        
         let urlString = baseURL + "traits?sign=\(sign.rawValue.lowercased())"
         guard let url = URL(string: urlString) else {
             completion(.failure(.invalidSignName))
@@ -42,6 +51,7 @@ class NetworkManager {
                 let decoder = JSONDecoder()
                 let traits = try decoder.decode(Traits.self, from: data)
                 completion(.success(traits))
+                ZodiacTraitCacheManager.shared.setInToFileCache(for: "\(sign.rawValue)", traits: traits)
             }catch {
                 completion(.failure(.invalidData))
                 return
