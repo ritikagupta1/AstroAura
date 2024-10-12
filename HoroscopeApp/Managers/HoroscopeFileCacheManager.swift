@@ -24,7 +24,10 @@ class HoroscopeFileCacheManager {
     private init() {
         let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
         cacheDirectory = urls[0].appendingPathComponent("HoroscopeCache")
-        try? fileManager.createDirectory(at: cacheDirectory, withIntermediateDirectories: true)
+        if !fileManager.fileExists(atPath: cacheDirectory.path) {
+            try? fileManager.createDirectory(at: cacheDirectory,
+                                             withIntermediateDirectories: true)
+        }
         fileURL = cacheDirectory.appendingPathComponent("HoroscopeData.json")
         loadInitialCache()
     }
