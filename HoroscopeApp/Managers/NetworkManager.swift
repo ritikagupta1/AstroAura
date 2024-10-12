@@ -14,6 +14,7 @@ class NetworkManager {
     
     let baseURL = "https://wd9j1sbsj0.execute-api.us-east-1.amazonaws.com/"
     let traitManager = CacheManagerProvider.shared(for: Traits.self)
+    let horoscopeCacheManager = HoroscopeFileCacheManager.shared
 
     // Use the manager as before
     
@@ -53,7 +54,8 @@ class NetworkManager {
                 let decoder = JSONDecoder()
                 let traits = try decoder.decode(Traits.self, from: data)
                 completion(.success(traits))
-                self.traitManager.setInToFileCache(for: "\(sign.rawValue)", value: traits)
+                // save in to cache
+                self.traitManager.setInToFileCache(for: sign.rawValue, value: traits)
             }catch {
                 completion(.failure(.invalidData))
                 return
@@ -63,9 +65,15 @@ class NetworkManager {
     }
     
     
-    func getHoroscopeReading(sign: Sign, timePeriod: String,completion: @escaping(Result<Horoscope,HoroscopeError>)-> Void) {
+    func getHoroscopeReading(sign: Sign, timePeriod: HoroscopeTimePeriod, completion: @escaping(Result<Horoscope,HoroscopeError>)-> Void) {
         
-        let urlString = baseURL + "horoscope?sign=\(sign.rawValue.lowercased())&timePeriod=\(timePeriod.lowercased())"
+        //check if horoscopeReadingExists for time Period
+        if let horoscopeReading: HoroscopeCacheReading = horoscopeCacheManager.getFromFileCache(for: sign.rawValue, timePeriod: timePeriod) {
+            completion(.success(horoscopeReading.reading))
+            return
+        }
+        
+        let urlString = baseURL + "horoscope?sign=\(sign.rawValue.lowercased())&timePeriod=\(timePeriod.rawValue.lowercased())"
         guard let url = URL(string: urlString) else {
             completion(.failure(.invalidSignName))
             return
@@ -92,6 +100,10 @@ class NetworkManager {
                 let decoder = JSONDecoder()
                 let reading = try decoder.decode(Horoscope.self, from: data)
                 completion(.success(reading))
+                // save in to cache
+                let horoscopeReading = HoroscopeCacheReading(reading: reading, timePeriod: timePeriod)
+                self.horoscopeCacheManager.setInToFileCache(for: sign.rawValue, value: horoscopeReading, expirationInterval: timePeriod.expirationTimeInterval)
+                
             }catch {
                 completion(.failure(.invalidData))
                 return

@@ -7,37 +7,7 @@
 
 import Foundation
 
-struct CachedObject<T: Codable> : Codable {
-    let item: T
-    var expirationDate: Date?
-    
-    var isExpired: Bool {
-        guard let expirationDate = expirationDate else {
-            // if expiration date is nil, it means data will never expire
-            return false
-        }
-        
-        return Date() > expirationDate
-    }
-}
-
-class CacheManagerProvider {
-    private static var managers: [String: Any] = [:]
-    
-    static func shared<T: Codable>(for type: T.Type, expirationInterval: TimeInterval? = nil) -> FileCacheManager<T> {
-        let typeName = String(describing: type)
-        if let existingManager = managers[typeName] as? FileCacheManager<T> {
-            return existingManager
-        }
-        let newManager = FileCacheManager<T>(cacheType: type, expirationInterval: expirationInterval)
-        managers[typeName] = newManager
-        return newManager
-    }
-}
-
-
-
-class FileCacheManager<T: Codable>{
+class TraitsFileCacheManager<T: Codable>{
     private let fileManager = FileManager.default
     private let cacheDirectory: URL
     private let fileURL: URL
@@ -47,7 +17,7 @@ class FileCacheManager<T: Codable>{
     private let expirationInterval: TimeInterval?
     
     
-    fileprivate init(cacheType: T.Type, expirationInterval: TimeInterval? = nil) {
+    init(cacheType: T.Type, expirationInterval: TimeInterval? = nil) {
         let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
         cacheDirectory = urls[0].appendingPathComponent("HoroscopeCache")
         try? fileManager.createDirectory(at: cacheDirectory, withIntermediateDirectories: true)

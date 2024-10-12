@@ -31,8 +31,10 @@
 		B466ECAE2CB6A21D001C8642 /* Traits.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECAD2CB6A21D001C8642 /* Traits.swift */; };
 		B466ECB02CB6A7AD001C8642 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECAF2CB6A7AD001C8642 /* NetworkManager.swift */; };
 		B466ECB22CB6A82E001C8642 /* HoroscopeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECB12CB6A82E001C8642 /* HoroscopeError.swift */; };
-		B466ECB42CB7CDB1001C8642 /* FileCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECB32CB7CDB1001C8642 /* FileCacheManager.swift */; };
+		B466ECB42CB7CDB1001C8642 /* TraitsFileCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECB32CB7CDB1001C8642 /* TraitsFileCacheManager.swift */; };
 		B466ECB62CB9B770001C8642 /* Horoscope.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECB52CB9B770001C8642 /* Horoscope.swift */; };
+		B466ECB82CBA6CA3001C8642 /* HoroscopeFileCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECB72CBA6CA3001C8642 /* HoroscopeFileCacheManager.swift */; };
+		B466ECBA2CBA6CEB001C8642 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECB92CBA6CEB001C8642 /* CacheManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,8 +64,10 @@
 		B466ECAD2CB6A21D001C8642 /* Traits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Traits.swift; sourceTree = "<group>"; };
 		B466ECAF2CB6A7AD001C8642 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B466ECB12CB6A82E001C8642 /* HoroscopeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeError.swift; sourceTree = "<group>"; };
-		B466ECB32CB7CDB1001C8642 /* FileCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCacheManager.swift; sourceTree = "<group>"; };
+		B466ECB32CB7CDB1001C8642 /* TraitsFileCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraitsFileCacheManager.swift; sourceTree = "<group>"; };
 		B466ECB52CB9B770001C8642 /* Horoscope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Horoscope.swift; sourceTree = "<group>"; };
+		B466ECB72CBA6CA3001C8642 /* HoroscopeFileCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeFileCacheManager.swift; sourceTree = "<group>"; };
+		B466ECB92CBA6CEB001C8642 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,7 +180,9 @@
 			children = (
 				B466EC702CAE76AB001C8642 /* PersistenceManager.swift */,
 				B466ECAF2CB6A7AD001C8642 /* NetworkManager.swift */,
-				B466ECB32CB7CDB1001C8642 /* FileCacheManager.swift */,
+				B466ECB32CB7CDB1001C8642 /* TraitsFileCacheManager.swift */,
+				B466ECB72CBA6CA3001C8642 /* HoroscopeFileCacheManager.swift */,
+				B466ECB92CBA6CEB001C8642 /* CacheManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -285,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B466ECBA2CBA6CEB001C8642 /* CacheManager.swift in Sources */,
 				B466ECA72CB3129F001C8642 /* HoroscopeVC.swift in Sources */,
 				B466ECAA2CB3174E001C8642 /* HeaderView.swift in Sources */,
 				B4110AB32CA3549500A402B4 /* SunSignCell.swift in Sources */,
@@ -295,12 +302,13 @@
 				B466ECAC2CB4FF43001C8642 /* SignView.swift in Sources */,
 				B4110AB82CA69EA700A402B4 /* SunSign.swift in Sources */,
 				B466EC812CAF1911001C8642 /* HoroscopeDetailsTabVC.swift in Sources */,
+				B466ECB82CBA6CA3001C8642 /* HoroscopeFileCacheManager.swift in Sources */,
 				B466EC6E2CADD922001C8642 /* Date+Ext.swift in Sources */,
 				B466EC772CAEB5E9001C8642 /* TitleLabel.swift in Sources */,
 				B4110A9C2CA34E0500A402B4 /* AppDelegate.swift in Sources */,
 				B466ECB22CB6A82E001C8642 /* HoroscopeError.swift in Sources */,
 				B466ECA52CB31161001C8642 /* TraitsVC.swift in Sources */,
-				B466ECB42CB7CDB1001C8642 /* FileCacheManager.swift in Sources */,
+				B466ECB42CB7CDB1001C8642 /* TraitsFileCacheManager.swift in Sources */,
 				B466EC732CAEB4B0001C8642 /* AlertView.swift in Sources */,
 				B466EC7D2CAF08E4001C8642 /* AlertViewController.swift in Sources */,
 				B4110A9E2CA34E0500A402B4 /* SceneDelegate.swift in Sources */,

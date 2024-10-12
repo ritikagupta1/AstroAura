@@ -142,7 +142,7 @@ class HoroscopeVC: ScrollableVC {
         self.showLoadingView()
         NetworkManager.shared.getHoroscopeReading(
             sign: selectedSign,
-            timePeriod: timePeriod.rawValue) { result in
+            timePeriod: timePeriod) { result in
                 self.dismissLoadingView()
                 switch result {
                 case .success(let reading):
@@ -194,9 +194,22 @@ class HoroscopeVC: ScrollableVC {
     }
 }
 
-enum HoroscopeTimePeriod: String, CaseIterable {
+enum HoroscopeTimePeriod: String, CaseIterable, Codable {
     case day = "Daily"
     case week = "Weekly"
     case month = "Monthly"
     case year = "Yearly"
+    
+    var expirationTimeInterval: TimeInterval {
+        switch self {
+        case .day:
+            return 24 * 60 * 60
+        case .week:
+            return 7 * 24 * 60 * 60
+        case .month:
+            return 30 * 24 * 60 * 60
+        case .year:
+            return 365 * 24 * 60 * 60
+        }
+    }
 }
