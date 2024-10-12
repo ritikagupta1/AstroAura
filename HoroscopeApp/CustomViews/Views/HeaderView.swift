@@ -22,6 +22,7 @@ class HeaderView: UIView {
     private func configure() {
         self.imageView.contentMode = .scaleAspectFill
         self.imageView.clipsToBounds = true
+        self.imageView.layer.cornerRadius = 18
         self.imageView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(imageView)
         

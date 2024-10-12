@@ -8,9 +8,20 @@
 import UIKit
 
 class HoroscopeVC: ScrollableVC {
-    var label = UILabel()
+    let dateLabel = TitleLabel(font: UIFont(name: Font.baskerVilleBoldItalic, size: 26), alignment: .center)
+    let horizontalScrollView = UIScrollView()
+    let horizontalScrollContentView = UIView()
+    let buttonStack = UIStackView()
     
-    init() {
+    let overallReading = UILabel()
+    let workReading = UILabel()
+    let relationshipReading = UILabel()
+    let wellbeingReading = UILabel()
+    
+    var selectedSign: Sign?
+    
+    init(selectedSign: Sign) {
+        self.selectedSign = selectedSign
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -21,20 +32,171 @@ class HoroscopeVC: ScrollableVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        
+        if  let button = buttonStack.arrangedSubviews.first(where: { view in
+          (view as? UIButton)?.titleLabel?.text == HoroscopeTimePeriod.day.rawValue
+        }) as? UIButton {
+           button.isSelected = true
+           button.layer.borderColor = button.isSelected ? UIColor.button.cgColor : UIColor.label.cgColor
+       }
+        
+        getHoroscopeReading(sign: selectedSign, timePeriod: .day)
     }
     
     private func configure() {
-        label.textColor = .label
-        label.numberOfLines = 0
-        label.text = "Second Tab" + String(repeating: "Dummy content \n", count: 60)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(label)
+        contentView.addSubview(dateLabel)
+        horizontalScrollView.showsHorizontalScrollIndicator = false
+        
+        horizontalScrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(horizontalScrollView)
+        
+        horizontalScrollContentView.translatesAutoresizingMaskIntoConstraints = false
+        horizontalScrollView.addSubview(horizontalScrollContentView)
+        
+        buttonStack.translatesAutoresizingMaskIntoConstraints = false
+        horizontalScrollContentView.addSubview(buttonStack)
+        
+        overallReading.numberOfLines = 0
+        overallReading.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(overallReading)
+        
+        workReading.numberOfLines = 0
+        workReading.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(workReading)
+        
+        relationshipReading.numberOfLines = 0
+        relationshipReading.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(relationshipReading)
+        
+        wellbeingReading.numberOfLines = 0
+        wellbeingReading.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(wellbeingReading)
         
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+            dateLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            dateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            dateLabel.heightAnchor.constraint(equalToConstant: 28),
+            
+            horizontalScrollView.topAnchor.constraint(equalTo: self.dateLabel.bottomAnchor, constant: 20),
+            horizontalScrollView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor,constant: 10),
+            horizontalScrollView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
+            horizontalScrollView.heightAnchor.constraint(equalTo: horizontalScrollContentView.heightAnchor),
+            
+            horizontalScrollContentView.topAnchor.constraint(equalTo: self.horizontalScrollView.topAnchor),
+            horizontalScrollContentView.leadingAnchor.constraint(equalTo: self.horizontalScrollView.leadingAnchor),
+            horizontalScrollContentView.trailingAnchor.constraint(equalTo: self.horizontalScrollView.trailingAnchor),
+            horizontalScrollContentView.bottomAnchor.constraint(equalTo: horizontalScrollView.bottomAnchor),
+            
+            
+            buttonStack.topAnchor.constraint(equalTo: horizontalScrollContentView.topAnchor),
+            buttonStack.leadingAnchor.constraint(equalTo: horizontalScrollContentView.leadingAnchor),
+            buttonStack.trailingAnchor.constraint(equalTo: horizontalScrollContentView.trailingAnchor),
+            buttonStack.bottomAnchor.constraint(equalTo: horizontalScrollContentView.bottomAnchor),
+            
+            
+            overallReading.topAnchor.constraint(equalTo: buttonStack.bottomAnchor, constant: 15),
+            overallReading.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            overallReading.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            
+            workReading.topAnchor.constraint(equalTo: overallReading.bottomAnchor, constant: 15),
+            workReading.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            workReading.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            
+            relationshipReading.topAnchor.constraint(equalTo: workReading.bottomAnchor, constant: 15),
+            relationshipReading.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            relationshipReading.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            
+            wellbeingReading.topAnchor.constraint(equalTo: relationshipReading.bottomAnchor, constant: 10),
+            wellbeingReading.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            wellbeingReading.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            wellbeingReading.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15)
         ])
+        
+        buttonStack.axis = .horizontal
+        buttonStack.spacing = 12
+        buttonStack.distribution = .fillEqually
+        
+        
+        for buttonType in HoroscopeTimePeriod.allCases {
+            let button = UIButton()
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.setTitle(buttonType.rawValue, for: .normal)
+            button.setTitleColor(.label, for: .normal)
+            button.setTitleColor(.button, for: .selected)
+            button.layer.borderWidth = 1.0
+            button.layer.borderColor = UIColor.label.cgColor
+            button.layer.cornerRadius = 12
+            button.widthAnchor.constraint(equalToConstant: 100).isActive = true
+            button.heightAnchor.constraint(equalToConstant: 40).isActive = true
+            button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+            buttonStack.addArrangedSubview(button)
+        }
     }
+    
+    
+    func getHoroscopeReading(sign: Sign?, timePeriod: HoroscopeTimePeriod) {
+        guard let selectedSign = selectedSign else {
+            return
+        }
+        self.showLoadingView()
+        NetworkManager.shared.getHoroscopeReading(
+            sign: selectedSign,
+            timePeriod: timePeriod.rawValue) { result in
+                self.dismissLoadingView()
+                switch result {
+                case .success(let reading):
+                    DispatchQueue.main.async {
+                        self.setUpHoroscopeReading(horoscopeReading: reading)
+                    }
+                    
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self.presentAlertViewController(
+                            title: Constants.somethingWentWrong,
+                            message: error.rawValue,
+                            buttonTitle: Constants.ok) {}
+                    }
+                }
+            }
+    }
+    
+    
+    @objc func buttonClicked(sender: UIButton) {
+        buttonStack.arrangedSubviews.forEach { view in
+            if let button = view as? UIButton {
+                button.isSelected = (button == sender)
+                button.layer.borderColor = button.isSelected ? UIColor.button.cgColor : UIColor.label.cgColor
+            }
+        }
+        let timePeriod = HoroscopeTimePeriod(rawValue: sender.titleLabel?.text ?? "") ?? .day
+        self.getHoroscopeReading(sign: selectedSign, timePeriod: timePeriod)
+    }
+    
+    func setUpHoroscopeReading(horoscopeReading: Horoscope) {
+        dateLabel.text = "\(horoscopeReading.startDate) - \(horoscopeReading.endDate)"
+        overallReading.attributedText = createText(title: Constants.overall , text: horoscopeReading.horoscope.overall)
+        workReading.attributedText = createText(title: Constants.workAndCareer, text: horoscopeReading.horoscope.workCareer)
+        relationshipReading.attributedText = createText(title: Constants.loveAndRelationships, text: horoscopeReading.horoscope.loveRelationship)
+        wellbeingReading.attributedText = createText(title: Constants.healthAndWellbeing , text: horoscopeReading.horoscope.workCareer)
+    }
+    
+    
+    func createText(title: String, text: String) -> NSAttributedString {
+        let attributes = [NSAttributedString.Key.font: UIFont(name: Font.typeWriterBold, size: 24) ?? .systemFont(ofSize: 22)]
+        let title = NSAttributedString(string: "\(title): \n" , attributes: attributes)
+        let completeText = NSMutableAttributedString()
+        completeText.append(title)
+        let textAttributes = [NSAttributedString.Key.font: UIFont(name: Font.typeWriter, size: 18) ?? .systemFont(ofSize: 20)]
+        let readingText = NSAttributedString(string: text, attributes: textAttributes )
+        completeText.append(readingText)
+        return completeText
+    }
+}
+
+enum HoroscopeTimePeriod: String, CaseIterable {
+    case day = "Daily"
+    case week = "Weekly"
+    case month = "Monthly"
+    case year = "Yearly"
 }

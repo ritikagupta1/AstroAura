@@ -224,7 +224,7 @@ class SelectSunSignVC: UIViewController {
             return
         }
         
-        self.navigationController?.pushViewController(HoroscopeDetailsVC(sign: selectedSign), animated: true)
+        self.navigationController?.pushViewController(HoroscopeDetailsTabVC(sign: selectedSign), animated: true)
     }
     
     func getZodiacSign(date: Date) -> Sign? {

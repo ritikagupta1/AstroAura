@@ -6,7 +6,7 @@
 //
 
 import UIKit
-class HoroscopeDetailsVC: UITabBarController {
+class HoroscopeDetailsTabVC: UITabBarController {
     var headerView = HeaderView()
     var selectedSign: Sign?
     
@@ -39,7 +39,7 @@ class HoroscopeDetailsVC: UITabBarController {
         traitVC.tabBarItem = UITabBarItem(title: Constants.traits, image: .astrology.withRenderingMode(.alwaysOriginal), tag: 0)
         traitVC.delegate = self
         
-        let horoscopeVC = HoroscopeVC()
+        let horoscopeVC = HoroscopeVC(selectedSign: selectedSign)
         horoscopeVC.tabBarItem = UITabBarItem(title: Constants.horoscope, image: .crystal.withRenderingMode(.alwaysOriginal), tag: 1)
         horoscopeVC.delegate = self
         
@@ -49,20 +49,19 @@ class HoroscopeDetailsVC: UITabBarController {
     
     private func configureHeaderView() {
         headerView.translatesAutoresizingMaskIntoConstraints = false
-        headerView.backgroundColor = .systemRed
         
         self.view.addSubview(headerView)
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+            headerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 8),
+            headerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -8)
         ])
         
         headerView.setup(with: selectedSign ?? .aries)
     }
 }
 
-extension HoroscopeDetailsVC: ScrollDelegate, UITabBarControllerDelegate {
+extension HoroscopeDetailsTabVC: ScrollDelegate, UITabBarControllerDelegate {
     var headerHeight: CGFloat{
         self.headerView.frame.height
     }

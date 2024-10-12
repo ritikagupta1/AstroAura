@@ -42,4 +42,9 @@ enum Constants {
     
     static let traits = "Traits"
     static let horoscope = "Horoscope"
+    
+    static let overall = "Overall"
+    static let loveAndRelationships = "Love & Relationships"
+    static let workAndCareer = "Work & Career"
+    static let healthAndWellbeing = "Health & Wellbeing"
 }

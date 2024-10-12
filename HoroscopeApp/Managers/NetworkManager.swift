@@ -61,4 +61,43 @@ class NetworkManager {
         }
         task.resume()
     }
+    
+    
+    func getHoroscopeReading(sign: Sign, timePeriod: String,completion: @escaping(Result<Horoscope,HoroscopeError>)-> Void) {
+        
+        let urlString = baseURL + "horoscope?sign=\(sign.rawValue.lowercased())&timePeriod=\(timePeriod.lowercased())"
+        guard let url = URL(string: urlString) else {
+            completion(.failure(.invalidSignName))
+            return
+        }
+        
+        let urlRequest = URLRequest(url: url)
+        
+        let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            if let _ = error {
+                completion(.failure(.unableToCompleteRequest))
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completion(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.invalidData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let reading = try decoder.decode(Horoscope.self, from: data)
+                completion(.success(reading))
+            }catch {
+                completion(.failure(.invalidData))
+                return
+            }
+        }
+        task.resume()
+    }
+    
 }

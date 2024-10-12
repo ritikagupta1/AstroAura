@@ -22,7 +22,7 @@
 		B466EC772CAEB5E9001C8642 /* TitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466EC762CAEB5E9001C8642 /* TitleLabel.swift */; };
 		B466EC7D2CAF08E4001C8642 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466EC7C2CAF08E4001C8642 /* AlertViewController.swift */; };
 		B466EC7F2CAF09E4001C8642 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466EC7E2CAF09E4001C8642 /* UIViewController+Ext.swift */; };
-		B466EC812CAF1911001C8642 /* HoroscopeDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466EC802CAF1911001C8642 /* HoroscopeDetailsVC.swift */; };
+		B466EC812CAF1911001C8642 /* HoroscopeDetailsTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466EC802CAF1911001C8642 /* HoroscopeDetailsTabVC.swift */; };
 		B466EC832CAFAFE1001C8642 /* ScrollableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466EC822CAFAFE1001C8642 /* ScrollableVC.swift */; };
 		B466ECA52CB31161001C8642 /* TraitsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECA42CB31161001C8642 /* TraitsVC.swift */; };
 		B466ECA72CB3129F001C8642 /* HoroscopeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECA62CB3129F001C8642 /* HoroscopeVC.swift */; };
@@ -32,6 +32,7 @@
 		B466ECB02CB6A7AD001C8642 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECAF2CB6A7AD001C8642 /* NetworkManager.swift */; };
 		B466ECB22CB6A82E001C8642 /* HoroscopeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECB12CB6A82E001C8642 /* HoroscopeError.swift */; };
 		B466ECB42CB7CDB1001C8642 /* FileCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECB32CB7CDB1001C8642 /* FileCacheManager.swift */; };
+		B466ECB62CB9B770001C8642 /* Horoscope.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECB52CB9B770001C8642 /* Horoscope.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,7 +53,7 @@
 		B466EC762CAEB5E9001C8642 /* TitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabel.swift; sourceTree = "<group>"; };
 		B466EC7C2CAF08E4001C8642 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		B466EC7E2CAF09E4001C8642 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
-		B466EC802CAF1911001C8642 /* HoroscopeDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeDetailsVC.swift; sourceTree = "<group>"; };
+		B466EC802CAF1911001C8642 /* HoroscopeDetailsTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeDetailsTabVC.swift; sourceTree = "<group>"; };
 		B466EC822CAFAFE1001C8642 /* ScrollableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableVC.swift; sourceTree = "<group>"; };
 		B466ECA42CB31161001C8642 /* TraitsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraitsVC.swift; sourceTree = "<group>"; };
 		B466ECA62CB3129F001C8642 /* HoroscopeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeVC.swift; sourceTree = "<group>"; };
@@ -62,6 +63,7 @@
 		B466ECAF2CB6A7AD001C8642 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B466ECB12CB6A82E001C8642 /* HoroscopeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeError.swift; sourceTree = "<group>"; };
 		B466ECB32CB7CDB1001C8642 /* FileCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCacheManager.swift; sourceTree = "<group>"; };
+		B466ECB52CB9B770001C8642 /* Horoscope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Horoscope.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				B4110A9F2CA34E0500A402B4 /* SelectSunSignVC.swift */,
-				B466EC802CAF1911001C8642 /* HoroscopeDetailsVC.swift */,
+				B466EC802CAF1911001C8642 /* HoroscopeDetailsTabVC.swift */,
 				B466ECA42CB31161001C8642 /* TraitsVC.swift */,
 				B466ECA62CB3129F001C8642 /* HoroscopeVC.swift */,
 			);
@@ -145,6 +147,7 @@
 				B4110AB72CA69EA700A402B4 /* SunSign.swift */,
 				B466EC6A2CADD3D1001C8642 /* ZodiacSign.swift */,
 				B466ECAD2CB6A21D001C8642 /* Traits.swift */,
+				B466ECB52CB9B770001C8642 /* Horoscope.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -291,7 +294,7 @@
 				B4110AA02CA34E0500A402B4 /* SelectSunSignVC.swift in Sources */,
 				B466ECAC2CB4FF43001C8642 /* SignView.swift in Sources */,
 				B4110AB82CA69EA700A402B4 /* SunSign.swift in Sources */,
-				B466EC812CAF1911001C8642 /* HoroscopeDetailsVC.swift in Sources */,
+				B466EC812CAF1911001C8642 /* HoroscopeDetailsTabVC.swift in Sources */,
 				B466EC6E2CADD922001C8642 /* Date+Ext.swift in Sources */,
 				B466EC772CAEB5E9001C8642 /* TitleLabel.swift in Sources */,
 				B4110A9C2CA34E0500A402B4 /* AppDelegate.swift in Sources */,
@@ -302,6 +305,7 @@
 				B466EC7D2CAF08E4001C8642 /* AlertViewController.swift in Sources */,
 				B4110A9E2CA34E0500A402B4 /* SceneDelegate.swift in Sources */,
 				B466EC712CAE76AB001C8642 /* PersistenceManager.swift in Sources */,
+				B466ECB62CB9B770001C8642 /* Horoscope.swift in Sources */,
 				B466EC6B2CADD3D1001C8642 /* ZodiacSign.swift in Sources */,
 				B466ECAE2CB6A21D001C8642 /* Traits.swift in Sources */,
 				B466EC672CADC439001C8642 /* Constants.swift in Sources */,
