@@ -178,7 +178,7 @@ class HoroscopeVC: ScrollableVC {
         overallReading.attributedText = createText(title: Constants.overall , text: horoscopeReading.horoscope.overall)
         workReading.attributedText = createText(title: Constants.workAndCareer, text: horoscopeReading.horoscope.workCareer)
         relationshipReading.attributedText = createText(title: Constants.loveAndRelationships, text: horoscopeReading.horoscope.loveRelationship)
-        wellbeingReading.attributedText = createText(title: Constants.healthAndWellbeing , text: horoscopeReading.horoscope.workCareer)
+        wellbeingReading.attributedText = createText(title: Constants.healthAndWellbeing , text: horoscopeReading.horoscope.health)
     }
     
     

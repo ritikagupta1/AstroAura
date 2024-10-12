@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TraitsFileCacheManager<T: Codable>{
+class GenericFileCacheManager<T: Codable>{
     private let fileManager = FileManager.default
     private let cacheDirectory: URL
     private let fileURL: URL
