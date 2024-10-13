@@ -25,8 +25,8 @@ The Horoscope App is an iOS application that provides users with daily, weekly, 
 
 The app integrates with custom horoscope and zodiac trait APIs, fetching data for different zodiac signs, time periods, and detailed characteristics. It implements efficient caching to minimize network requests and improve app performance.
 
-- Traits API: https://wd9j1sbsj0.execute-api.us-east-1.amazonaws.com/traits?sign=aries
-- Horoscope Reading API: https://wd9j1sbsj0.execute-api.us-east-1.amazonaws.com/horoscope?sign=aries&timePeriod=weekly
+- Traits API: baseURL/traits?sign=aries
+- Horoscope Reading API: baseURL/horoscope?sign=aries&timePeriod=weekly
 
 ## UI/UX Design
 
