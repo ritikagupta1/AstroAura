@@ -8,27 +8,23 @@
 import Foundation
 
 class NetworkManager {
-    private init() {}
-    
     static let shared = NetworkManager()
+    private let cache: URLCache
     
-    let baseURL = "https://wd9j1sbsj0.execute-api.us-east-1.amazonaws.com/"
+    private init(memoryCapacity: Int = 10_000_000, diskCapacity: Int = 50_000_000) {
+        cache = CustomURLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "horoscope_cache")
+    }
+    
     let traitManager = CacheManagerProvider.shared(for: Traits.self)
-    let horoscopeCacheManager = HoroscopeFileCacheManager.shared
-
-    // Use the manager as before
     
     func getTraits(sign: Sign, completion: @escaping(Result<Traits,HoroscopeError>)-> Void) {
-        
-        // first check if the file already exists
-        
+        // first check if the file cache already exists
         if let traits: Traits = traitManager.getFromFileCache(for: "\(sign.rawValue)") {
             completion(.success(traits))
             return
         }
         
-        let urlString = baseURL + "traits?sign=\(sign.rawValue.lowercased())"
-        guard let url = URL(string: urlString) else {
+        guard let url = EndPoint.traits(for: sign).url else {
             completion(.failure(.invalidSignName))
             return
         }
@@ -66,22 +62,22 @@ class NetworkManager {
     
     
     func getHoroscopeReading(sign: Sign, timePeriod: HoroscopeTimePeriod, completion: @escaping(Result<Horoscope,HoroscopeError>)-> Void) {
-        
-        //check if horoscopeReadingExists for time Period
-        if let horoscopeReading: HoroscopeCacheReading = horoscopeCacheManager.getFromFileCache(for: sign.rawValue, timePeriod: timePeriod) {
-            completion(.success(horoscopeReading.reading))
-            return
-        }
-        
-        let urlString = baseURL + "horoscope?sign=\(sign.rawValue.lowercased())&timePeriod=\(timePeriod.rawValue.lowercased())"
-        guard let url = URL(string: urlString) else {
+        guard let url = EndPoint.horoscopeReading(sign: sign, timePeriod: timePeriod).url else {
             completion(.failure(.invalidSignName))
             return
         }
         
-        let urlRequest = URLRequest(url: url)
+        let config = URLSessionConfiguration.default
+        config.urlCache = cache
         
-        let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+        // Create a URLSession with this configuration
+        let urlSession: URLSession = URLSession(configuration: config)
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.cachePolicy = .returnCacheDataElseLoad
+        urlRequest.timeoutInterval = 30 // 30 seconds timeout for the request
+        
+        let task = urlSession.dataTask(with: urlRequest) { data, response, error in
             if let _ = error {
                 completion(.failure(.unableToCompleteRequest))
             }
@@ -99,11 +95,14 @@ class NetworkManager {
             do {
                 let decoder = JSONDecoder()
                 let reading = try decoder.decode(Horoscope.self, from: data)
+                let cachedResponse = CachedURLResponse(
+                    response: response,
+                    data: data,
+                    userInfo: ["expirationDate": Date().addingTimeInterval(timePeriod.expirationTimeInterval)],
+                    storagePolicy: .allowed
+                )
+                self.cache.storeCachedResponse(cachedResponse, for: urlRequest)
                 completion(.success(reading))
-                // save in to cache
-                let horoscopeReading = HoroscopeCacheReading(reading: reading, timePeriod: timePeriod)
-                self.horoscopeCacheManager.setInToFileCache(for: sign.rawValue, value: horoscopeReading, expirationInterval: timePeriod.expirationTimeInterval)
-                
             }catch {
                 completion(.failure(.invalidData))
                 return
@@ -112,4 +111,22 @@ class NetworkManager {
         task.resume()
     }
     
+}
+
+class CustomURLCache: URLCache {
+    override func cachedResponse(for request: URLRequest) -> CachedURLResponse? {
+        guard let cachedResponse = super.cachedResponse(for: request),
+              let expirationDate = cachedResponse.userInfo?["expirationDate"] as? Date else {
+            return nil
+        }
+        
+        // Check if the cached response has expired
+        if Date() > expirationDate {
+            // Remove the expired cache entry
+            removeCachedResponse(for: request)
+            return nil
+        }
+        
+        return cachedResponse
+    }
 }

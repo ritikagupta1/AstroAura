@@ -36,6 +36,7 @@
 		B466ECB82CBA6CA3001C8642 /* HoroscopeFileCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECB72CBA6CA3001C8642 /* HoroscopeFileCacheManager.swift */; };
 		B466ECBA2CBA6CEB001C8642 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECB92CBA6CEB001C8642 /* CacheManager.swift */; };
 		B466ECBC2CBAA154001C8642 /* CachedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECBB2CBAA154001C8642 /* CachedObject.swift */; };
+		B466ECBE2CBB06BA001C8642 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466ECBD2CBB06BA001C8642 /* EndPoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		B466ECB72CBA6CA3001C8642 /* HoroscopeFileCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeFileCacheManager.swift; sourceTree = "<group>"; };
 		B466ECB92CBA6CEB001C8642 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		B466ECBB2CBAA154001C8642 /* CachedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedObject.swift; sourceTree = "<group>"; };
+		B466ECBD2CBB06BA001C8642 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 				B466ECB32CB7CDB1001C8642 /* GenericFileCacheManager.swift */,
 				B466ECB72CBA6CA3001C8642 /* HoroscopeFileCacheManager.swift */,
 				B466ECB92CBA6CEB001C8642 /* CacheManager.swift */,
+				B466ECBD2CBB06BA001C8642 /* EndPoint.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				B466ECB62CB9B770001C8642 /* Horoscope.swift in Sources */,
 				B466EC6B2CADD3D1001C8642 /* ZodiacSign.swift in Sources */,
 				B466ECAE2CB6A21D001C8642 /* Traits.swift in Sources */,
+				B466ECBE2CBB06BA001C8642 /* EndPoint.swift in Sources */,
 				B466EC672CADC439001C8642 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

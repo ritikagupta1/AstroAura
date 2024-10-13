@@ -51,6 +51,11 @@ class TraitsVC: ScrollableVC {
         getTraits()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.navigationItem.rightBarButtonItem = nil
+    }
+    
     private func configure() {
         contentView.addSubview(dateLabel)
         contentView.addSubview(rulingPlanetLabel)

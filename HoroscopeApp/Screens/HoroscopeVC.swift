@@ -43,6 +43,12 @@ class HoroscopeVC: ScrollableVC {
         getHoroscopeReading(sign: selectedSign, timePeriod: .day)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        let rightButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: nil)
+        rightButton.tintColor = .button
+        self.tabBarController?.navigationItem.rightBarButtonItem = rightButton
+    }
+    
     private func configure() {
         contentView.addSubview(dateLabel)
         horizontalScrollView.showsHorizontalScrollIndicator = false
