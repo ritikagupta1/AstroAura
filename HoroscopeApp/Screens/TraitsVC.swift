@@ -141,7 +141,7 @@ class TraitsVC: ScrollableVC {
             weaknessLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             
             compatibleSignLabel.topAnchor.constraint(equalTo: weaknessLabel.bottomAnchor),
-            compatibleSignLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            compatibleSignLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             compatibleSignLabel.widthAnchor.constraint(equalToConstant: 250),
             compatibleSignLabel.heightAnchor.constraint(equalToConstant: 30),
             

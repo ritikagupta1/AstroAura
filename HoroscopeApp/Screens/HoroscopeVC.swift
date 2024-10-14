@@ -19,6 +19,7 @@ class HoroscopeVC: ScrollableVC {
     let wellbeingReading = UILabel()
     
     var selectedSign: Sign?
+    var selectedTimePeriod: HoroscopeTimePeriod?
     
     init(selectedSign: Sign) {
         self.selectedSign = selectedSign
@@ -39,14 +40,24 @@ class HoroscopeVC: ScrollableVC {
            button.isSelected = true
            button.layer.borderColor = button.isSelected ? UIColor.button.cgColor : UIColor.label.cgColor
        }
-        
+        self.selectedTimePeriod = .day
         getHoroscopeReading(sign: selectedSign, timePeriod: .day)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let rightButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: nil)
+        let rightButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareHoroscope))
         rightButton.tintColor = .button
         self.tabBarController?.navigationItem.rightBarButtonItem = rightButton
+    }
+    
+    @objc func shareHoroscope() {
+        guard let sharedText = self.createSharedHoroscope() else {
+            return
+        }
+        
+        let shareSheetVC = UIActivityViewController(activityItems: [sharedText], applicationActivities: nil)
+        
+        present(shareSheetVC,animated: true)
     }
     
     private func configure() {
@@ -176,6 +187,7 @@ class HoroscopeVC: ScrollableVC {
             }
         }
         let timePeriod = HoroscopeTimePeriod(rawValue: sender.titleLabel?.text ?? "") ?? .day
+        self.selectedTimePeriod = timePeriod
         self.getHoroscopeReading(sign: selectedSign, timePeriod: timePeriod)
     }
     
@@ -197,6 +209,19 @@ class HoroscopeVC: ScrollableVC {
         let readingText = NSAttributedString(string: text, attributes: textAttributes )
         completeText.append(readingText)
         return completeText
+    }
+    
+    
+    func createSharedHoroscope() -> String? {
+        guard let selectedSign = selectedSign, let selectedTimePeriod = selectedTimePeriod, let overallReading = overallReading.text, let wellbeingReading = wellbeingReading.text, let workReadingReading = workReading.text, let relationShipReading = relationshipReading.text else {
+            return nil
+        }
+        var sharedText =  "\(selectedTimePeriod.rawValue) - Horoscope Reading for \(selectedSign.rawValue): \n"
+        sharedText.append("\(overallReading)\n")
+        sharedText.append("\(wellbeingReading)\n")
+        sharedText.append("\(relationShipReading)\n")
+        sharedText.append("\(workReadingReading)\n")
+        return sharedText
     }
 }
 
