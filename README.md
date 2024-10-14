@@ -40,5 +40,6 @@ The app features a modern, intuitive design with a custom tab bar and scrollable
 This Horoscope App showcases advanced iOS development techniques, including custom UI implementations, efficient network handling, and optimized performance through both URL and file-based caching mechanisms. The addition of comprehensive zodiac sign traits provides users with a rich, informative experience beyond basic horoscope readings.
 
 
-<img width="1026" alt="Screenshot 2024-10-13 at 5 02 46 PM" src="https://github.com/user-attachments/assets/82fbf8fc-6f9f-4801-a9ad-bc8695432aaf">
+<img width="1028" alt="Screenshot 2024-10-14 at 10 29 27 AM" src="https://github.com/user-attachments/assets/02b4b9aa-f28e-4c40-ae67-9cf8660b23fb">
+
 
