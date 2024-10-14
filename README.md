@@ -41,6 +41,6 @@ This Horoscope App showcases advanced iOS development techniques, including cust
 
 
 
-<img width="1032" alt="Screenshot 2024-10-14 at 10 33 05 AM" src="https://github.com/user-attachments/assets/70f695f8-463e-46b8-86d8-94ec4e5be0fc">
+![Uploading Screenshot 2024-10-14 at 4.17.28 PM.png…]()
 
 
