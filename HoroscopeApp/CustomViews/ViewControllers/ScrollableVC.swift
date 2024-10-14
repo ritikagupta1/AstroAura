@@ -60,3 +60,42 @@ extension ScrollableVC: UIScrollViewDelegate {
         delegate?.scrollViewDidScroll(offset: offset)
     }
 }
+
+class ScrollableDataLoadingVC: ScrollableVC {
+    var containerView: UIView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    func showLoadingView() {
+        containerView = UIView(frame: self.view.bounds)
+        view.addSubview(containerView ?? UIView())
+        containerView?.backgroundColor = .systemBackground
+        containerView?.alpha = 0.0
+       
+        UIView.animate(withDuration: 0.25) {
+            self.containerView.alpha = 0.8
+        }
+        
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        containerView?.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: containerView?.centerXAnchor ?? self.view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: containerView?.centerYAnchor ?? self.view.centerYAnchor)
+        ])
+        
+        activityIndicator.startAnimating()
+    }
+    
+    func dismissLoadingView() {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.25) {
+                self.containerView.alpha = 0
+                self.containerView?.removeFromSuperview()
+                self.containerView = nil
+            }
+        }
+    }
+}

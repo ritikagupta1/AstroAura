@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TraitsVC: ScrollableVC {
+class TraitsVC: ScrollableDataLoadingVC {
     
     var dateLabel = TitleLabel(font: UIFont(name: Font.baskerVilleBoldItalic, size: 26), alignment: .center)
     

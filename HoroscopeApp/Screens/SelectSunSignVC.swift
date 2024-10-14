@@ -46,51 +46,55 @@ class SelectSunSignVC: UIViewController {
     }
     
     private func loadZodiacSignData() {
-        //check if zodiac data is already present in the user defaults
-        PersistenceManager.retrieveZodiacData { result in
-            switch result {
-            case .success(let zodiacData):
-                //If successful, store it in the local variable
-                self.zodiacSignMapping = zodiacData
-                
-            case .failure(let error):
-                switch error {
-                case .noZodiacDataFound:
-                    // For the very first time, data wont be there in user defaults,we will need to decode from json file and store it in user defaults
-                    self.decodeAndSaveZodiacData()
+        DispatchQueue.global(qos: .userInitiated).async {
+            //check if zodiac data is already present in the user defaults
+            PersistenceManager.retrieveZodiacData { result in
+                switch result {
+                case .success(let zodiacData):
+                    //If successful, store it in the local variable
+                    self.zodiacSignMapping = zodiacData
                     
-                default:
-                    // .unableToRetrieveZodiacData error will happen when decoding from user default fails, show alert
-                    print(error)
+                case .failure(let error):
+                    switch error {
+                    case .noZodiacDataFound:
+                        // For the very first time, data wont be there in user defaults,we will need to decode from json file and store it in user defaults
+                        self.decodeAndSaveZodiacData()
+                        
+                    default:
+                        // .unableToRetrieveZodiacData error will happen when decoding from user default fails, show alert
+                        print(error)
+                    }
                 }
             }
         }
     }
     
     private func decodeAndSaveZodiacData() {
-        guard let fileURL = Bundle.main.url(forResource: "Zodiac", withExtension: "json") else {
-            return
-        }
-        
-        guard let data = try? Data(contentsOf: fileURL) else {
-            return
-        }
-        let decoder = JSONDecoder()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd"
-        dateFormatter.locale = .current
-        decoder.dateDecodingStrategy = .formatted(dateFormatter)
-        guard let zodiacData = try? decoder.decode(ZodiacSign.self, from: data) else {
-            return
-        }
-        
-        self.zodiacSignMapping = zodiacData.zodiacs
-        if let error = PersistenceManager.addZodiacData(zodiacs: zodiacData.zodiacs) {
-            // when saving in to user defaults fail, fail silently
-            print("zodiac data couldn't be saved to user default because of \(error)")
-        } else {
-            // when saving in to user defaults succeeds, succeed silently
-            print("zodiac data added successfully to user default")
+        DispatchQueue.global(qos: .userInitiated).async {
+            guard let fileURL = Bundle.main.url(forResource: "Zodiac", withExtension: "json") else {
+                return
+            }
+            
+            guard let data = try? Data(contentsOf: fileURL) else {
+                return
+            }
+            let decoder = JSONDecoder()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM/dd"
+            dateFormatter.locale = .current
+            decoder.dateDecodingStrategy = .formatted(dateFormatter)
+            guard let zodiacData = try? decoder.decode(ZodiacSign.self, from: data) else {
+                return
+            }
+            
+            self.zodiacSignMapping = zodiacData.zodiacs
+            if let error = PersistenceManager.addZodiacData(zodiacs: zodiacData.zodiacs) {
+                // when saving in to user defaults fail, fail silently
+                print("zodiac data couldn't be saved to user default because of \(error)")
+            } else {
+                // when saving in to user defaults succeeds, succeed silently
+                print("zodiac data added successfully to user default")
+            }
         }
     }
     

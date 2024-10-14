@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HoroscopeVC: ScrollableVC {
+class HoroscopeVC: ScrollableDataLoadingVC {
     let dateLabel = TitleLabel(font: UIFont(name: Font.baskerVilleBoldItalic, size: 26), alignment: .center)
     let horizontalScrollView = UIScrollView()
     let horizontalScrollContentView = UIView()
